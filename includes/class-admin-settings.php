@@ -388,7 +388,6 @@ class AdminSettings {
                     <div class="savebar">
                         <button type="submit" id="svbtn"><i class="ti ti-device-floppy" aria-hidden="true"></i> <?php esc_html_e('Save Changes', 'file-type-icons'); ?></button>
                         <span class="smsg" id="svmsg"></span>
-                        <span style="margin-left: auto; font-size: 11px; color: var(--color-text-secondary);"><?php printf(wp_kses(__('Color picker powered by %s', 'file-type-icons'), ['a' => ['href' => true, 'target' => true, 'rel' => true]]), '<a href="https://github.com/mdbassit/Coloris" target="_blank" rel="noopener noreferrer">Coloris</a>'); ?></span>
                     </div>
                 </div>
             </form>
