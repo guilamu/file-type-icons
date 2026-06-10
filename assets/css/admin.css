@@ -21,7 +21,7 @@
     font-size: 14px;
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    max-width: 800px;
+    max-width: 900px;
 }
 
 .wp-sti * {
@@ -87,7 +87,7 @@
 
 .frow {
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr);
+    grid-template-columns: 160px minmax(0, 1fr);
     gap: 20px;
     align-items: start;
     padding: 16px 0;
@@ -120,6 +120,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
 }
 
 /* Custom premium slider */
@@ -131,6 +132,7 @@
     border-radius: 3px;
     background: var(--color-border-secondary);
     outline: none;
+    min-width: 50px;
 }
 
 .szr input[type=range]::-webkit-slider-thumb {
@@ -493,3 +495,92 @@
 .wp-sti button#svbtn:active {
     background: #0f3c69;
 }
+
+/* Split layout for General Settings */
+.fti-split-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(320px, 1fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.fti-split-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.fti-split-right {
+    display: flex;
+    flex-direction: column;
+    border-left: .5px solid var(--color-border-tertiary);
+    padding-left: 20px;
+}
+
+.fti-preview-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+}
+
+.fti-preview-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background-secondary);
+    border: .5px dashed var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 16px;
+    min-height: 150px;
+}
+
+/* Preview link formatting */
+.fti-preview-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0969da !important; /* GitHub Link color */
+    pointer-events: none; /* Make link non-clickable */
+}
+
+.fti-preview-link:hover {
+    color: #0969da !important;
+}
+
+.fti-preview-icon-wrap {
+    display: inline-block;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.fti-preview-icon-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.fti-preview-text {
+    line-height: 1.2;
+    word-break: break-all;
+}
+
+@media (max-width: 768px) {
+    .fti-split-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .fti-split-right {
+        border-left: none;
+        border-top: .5px solid var(--color-border-tertiary);
+        padding-left: 0;
+        padding-top: 20px;
+    }
+}
+

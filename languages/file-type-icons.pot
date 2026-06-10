@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the File Type Icons plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: File Type Icons 1.0.0\n"
+"Project-Id-Version: File Type Icons 1.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/file-type-icons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,4 +143,22 @@ msgid "Save Changes"
 msgstr ""
 
 msgid "Changes saved successfully"
+msgstr ""
+
+msgid "More information about File Type Icons"
+msgstr ""
+
+msgid "🐛 Report a Bug"
+msgstr ""
+
+msgid "🐛 Report a Bug (install Bug Reporter)"
+msgstr ""
+
+msgid "Live Link Preview"
+msgstr ""
+
+msgid "doc.pdf"
+msgstr ""
+
+msgid "Unable to rename the update folder. Please retry or update manually."
 msgstr ""

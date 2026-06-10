@@ -114,8 +114,8 @@ class AdminSettings {
             return;
         }
         wp_enqueue_style('tabler-icons', 'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css', [], '2.44.0');
-        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', [], FTI_VERSION);
-        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', [], FTI_VERSION, true);
+        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', [], time());
+        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', [], time(), true);
         wp_localize_script('fti-admin-script', 'ftiAdmin', [
             'templates' => [
                 '1' => IconHandler::SVG_TEMPLATES,
@@ -198,40 +198,74 @@ class AdminSettings {
                             <i class="ti ti-settings" style="font-size:15px;color:var(--color-text-secondary)" aria-hidden="true"></i>
                             <span class="s-ct"><?php esc_html_e('General Settings', 'file-type-icons'); ?></span>
                         </div>
-                        <div class="s-cb">
-                            <div class="frow">
-                                <div>
-                                    <div class="fl"><?php esc_html_e('Icon Size', 'file-type-icons'); ?></div>
-                                    <div class="fh"><?php esc_html_e('Displayed dimension, in pixels', 'file-type-icons'); ?></div>
+                        <div class="s-cb fti-split-layout">
+                            <div class="fti-split-left">
+                                <div class="frow">
+                                    <div>
+                                        <div class="fl"><?php esc_html_e('Icon Size', 'file-type-icons'); ?></div>
+                                        <div class="fh"><?php esc_html_e('Displayed dimension, in pixels', 'file-type-icons'); ?></div>
+                                    </div>
+                                    <div class="szr">
+                                        <input type="range" id="szsl" min="8" max="256" value="<?php echo esc_attr($size); ?>" step="1">
+                                        <input type="number" name="fti_icon_size" id="szni" min="8" max="256" value="<?php echo esc_attr($size); ?>">
+                                        <span class="szunit">px</span>
+                                    </div>
                                 </div>
-                                <div class="szr">
-                                    <input type="range" id="szsl" min="8" max="256" value="<?php echo esc_attr($size); ?>" step="1">
-                                    <input type="number" name="fti_icon_size" id="szni" min="8" max="256" value="<?php echo esc_attr($size); ?>">
-                                    <span class="szunit">px</span>
+                                <div class="frow">
+                                    <div>
+                                        <div class="fl"><?php esc_html_e('Icon Position', 'file-type-icons'); ?></div>
+                                        <div class="fh"><?php esc_html_e('Relative to the link text', 'file-type-icons'); ?></div>
+                                    </div>
+                                    <div class="pgrid">
+                                        <input type="hidden" name="fti_icon_position" id="fti_icon_position" value="<?php echo esc_attr($position); ?>">
+                                        <button type="button" class="pbtn <?php echo ($position === 'left') ? 'on' : ''; ?>" data-value="left"><i class="ti ti-chevron-left" aria-hidden="true"></i><em><?php esc_html_e('Left', 'file-type-icons'); ?></em></button>
+                                        <button type="button" class="pbtn <?php echo ($position === 'right') ? 'on' : ''; ?>" data-value="right"><i class="ti ti-chevron-right" aria-hidden="true"></i><em><?php esc_html_e('Right', 'file-type-icons'); ?></em></button>
+                                        <button type="button" class="pbtn <?php echo ($position === 'above') ? 'on' : ''; ?>" data-value="above"><i class="ti ti-chevron-up" aria-hidden="true"></i><em><?php esc_html_e('Above', 'file-type-icons'); ?></em></button>
+                                        <button type="button" class="pbtn <?php echo ($position === 'below') ? 'on' : ''; ?>" data-value="below"><i class="ti ti-chevron-down" aria-hidden="true"></i><em><?php esc_html_e('Below', 'file-type-icons'); ?></em></button>
+                                    </div>
+                                </div>
+                                <div class="frow">
+                                    <div>
+                                        <div class="fl"><?php esc_html_e('Icon Style', 'file-type-icons'); ?></div>
+                                        <div class="fh"><?php esc_html_e('Visual file rendering', 'file-type-icons'); ?></div>
+                                    </div>
+                                    <div class="seg">
+                                        <input type="hidden" name="fti_icon_style" id="fti_icon_style" value="<?php echo esc_attr($style); ?>">
+                                        <button type="button" class="sbtn <?php echo ($style === 1) ? 'on' : ''; ?>" data-value="1"><?php esc_html_e('Filled', 'file-type-icons'); ?></button>
+                                        <button type="button" class="sbtn <?php echo ($style === 2) ? 'on' : ''; ?>" data-value="2"><?php esc_html_e('Outline', 'file-type-icons'); ?></button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="frow">
-                                <div>
-                                    <div class="fl"><?php esc_html_e('Icon Position', 'file-type-icons'); ?></div>
-                                    <div class="fh"><?php esc_html_e('Relative to the link text', 'file-type-icons'); ?></div>
-                                </div>
-                                <div class="pgrid">
-                                    <input type="hidden" name="fti_icon_position" id="fti_icon_position" value="<?php echo esc_attr($position); ?>">
-                                    <button type="button" class="pbtn <?php echo ($position === 'left') ? 'on' : ''; ?>" data-value="left"><i class="ti ti-chevron-left" aria-hidden="true"></i><em><?php esc_html_e('Left', 'file-type-icons'); ?></em></button>
-                                    <button type="button" class="pbtn <?php echo ($position === 'right') ? 'on' : ''; ?>" data-value="right"><i class="ti ti-chevron-right" aria-hidden="true"></i><em><?php esc_html_e('Right', 'file-type-icons'); ?></em></button>
-                                    <button type="button" class="pbtn <?php echo ($position === 'above') ? 'on' : ''; ?>" data-value="above"><i class="ti ti-chevron-up" aria-hidden="true"></i><em><?php esc_html_e('Above', 'file-type-icons'); ?></em></button>
-                                    <button type="button" class="pbtn <?php echo ($position === 'below') ? 'on' : ''; ?>" data-value="below"><i class="ti ti-chevron-down" aria-hidden="true"></i><em><?php esc_html_e('Below', 'file-type-icons'); ?></em></button>
-                                </div>
-                            </div>
-                            <div class="frow">
-                                <div>
-                                    <div class="fl"><?php esc_html_e('Icon Style', 'file-type-icons'); ?></div>
-                                    <div class="fh"><?php esc_html_e('Visual file rendering', 'file-type-icons'); ?></div>
-                                </div>
-                                <div class="seg">
-                                    <input type="hidden" name="fti_icon_style" id="fti_icon_style" value="<?php echo esc_attr($style); ?>">
-                                    <button type="button" class="sbtn <?php echo ($style === 1) ? 'on' : ''; ?>" data-value="1"><?php esc_html_e('Filled', 'file-type-icons'); ?></button>
-                                    <button type="button" class="sbtn <?php echo ($style === 2) ? 'on' : ''; ?>" data-value="2"><?php esc_html_e('Outline', 'file-type-icons'); ?></button>
+                            <div class="fti-split-right">
+                                <div class="fti-preview-title"><?php esc_html_e('Live Link Preview', 'file-type-icons'); ?></div>
+                                <div class="fti-preview-card">
+                                    <?php
+                                    $flex_direction = in_array($position, ['above', 'below'], true) ? 'column' : 'row';
+                                    $margin_style = '';
+                                    if ($position === 'left') {
+                                        $margin_style = 'margin-right: 6px;';
+                                    } elseif ($position === 'right') {
+                                        $margin_style = 'margin-left: 6px;';
+                                    } elseif ($position === 'above') {
+                                        $margin_style = 'margin-bottom: 4px;';
+                                    } elseif ($position === 'below') {
+                                        $margin_style = 'margin-top: 4px;';
+                                    }
+                                    $icon_order = in_array($position, ['left', 'above'], true) ? 'order: 1;' : 'order: 2;';
+                                    $text_order = in_array($position, ['left', 'above'], true) ? 'order: 2;' : 'order: 1;';
+                                    ?>
+                                    <a href="#" class="fti-preview-link" style="display: inline-flex; align-items: center; justify-content: center; flex-direction: <?php echo esc_attr($flex_direction); ?>;" onclick="return false;">
+                                        <span class="fti-preview-icon-wrap" style="width: <?php echo esc_attr($size); ?>px; height: <?php echo esc_attr($size); ?>px; <?php echo esc_attr($margin_style); ?> <?php echo esc_attr($icon_order); ?>">
+                                            <?php
+                                            $templates = ($style === 2) ? IconHandler::SVG_TEMPLATES_STYLE_2 : IconHandler::SVG_TEMPLATES;
+                                            $pdf_color = $colors['pdf'] ?? '#E53935';
+                                            if (isset($templates['pdf'])) {
+                                                echo str_replace('%%COLOR%%', $pdf_color, $templates['pdf']);
+                                            }
+                                            ?>
+                                        </span>
+                                        <span class="fti-preview-text" style="<?php echo esc_attr($text_order); ?>"><?php esc_html_e('doc.pdf', 'file-type-icons'); ?></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

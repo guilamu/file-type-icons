@@ -8,10 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sizeSlider && sizeNumber) {
         sizeSlider.addEventListener('input', () => {
             sizeNumber.value = sizeSlider.value;
+            updatePreviewSize(sizeSlider.value);
         });
         sizeNumber.addEventListener('input', () => {
             const val = Math.min(256, Math.max(8, parseInt(sizeNumber.value) || 8));
             sizeSlider.value = sizeNumber.value = val;
+            updatePreviewSize(val);
         });
     }
 
@@ -24,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             positionButtons.forEach(b => b.classList.remove('on'));
             btn.classList.add('on');
             if (positionInput) {
-                positionInput.value = btn.getAttribute('data-value');
+                const pos = btn.getAttribute('data-value');
+                positionInput.value = pos;
+                updatePreviewPosition(pos);
             }
         });
     });
@@ -40,11 +44,67 @@ document.addEventListener('DOMContentLoaded', () => {
             if (styleInput) {
                 styleInput.value = btn.getAttribute('data-value');
                 updateAllPreviews();
+                updatePreviewSvg();
             }
         });
     });
 
-    // Updates all SVG icon previews
+    // Live Link Preview Synchronizers
+    const previewIconWrap = document.querySelector('.fti-preview-icon-wrap');
+    const previewLink = document.querySelector('.fti-preview-link');
+    const previewText = document.querySelector('.fti-preview-text');
+
+    const updatePreviewSize = (size) => {
+        if (previewIconWrap) {
+            previewIconWrap.style.width = size + 'px';
+            previewIconWrap.style.height = size + 'px';
+        }
+    };
+
+    const updatePreviewPosition = (position) => {
+        if (!previewLink || !previewIconWrap) return;
+        
+        previewLink.style.flexDirection = (position === 'above' || position === 'below') ? 'column' : 'row';
+        previewIconWrap.style.margin = '';
+        previewIconWrap.style.order = '';
+        if (previewText) {
+            previewText.style.order = '';
+        }
+
+        if (position === 'left') {
+            previewIconWrap.style.marginRight = '6px';
+            previewIconWrap.style.order = '1';
+            if (previewText) previewText.style.order = '2';
+        } else if (position === 'right') {
+            previewIconWrap.style.marginLeft = '6px';
+            previewIconWrap.style.order = '2';
+            if (previewText) previewText.style.order = '1';
+        } else if (position === 'above') {
+            previewIconWrap.style.marginBottom = '4px';
+            previewIconWrap.style.order = '1';
+            if (previewText) previewText.style.order = '2';
+        } else if (position === 'below') {
+            previewIconWrap.style.marginTop = '4px';
+            previewIconWrap.style.order = '2';
+            if (previewText) previewText.style.order = '1';
+        }
+    };
+
+    const updatePreviewSvg = () => {
+        if (!previewIconWrap) return;
+        const styleVal = styleInput ? styleInput.value : '1';
+        const pdfPicker = document.querySelector('input[name="fti_icon_colors[pdf]"]');
+        const color = pdfPicker ? pdfPicker.value : '#E53935';
+
+        if (window.ftiAdmin && window.ftiAdmin.templates && window.ftiAdmin.templates[styleVal]) {
+            const template = window.ftiAdmin.templates[styleVal]['pdf'];
+            if (template) {
+                previewIconWrap.innerHTML = template.replace(/%%COLOR%%/g, color);
+            }
+        }
+    };
+
+    // Updates all SVG icon previews in the table
     const updateAllPreviews = () => {
         const styleVal = styleInput ? styleInput.value : '1';
         
@@ -107,6 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     previewContainer.innerHTML = template.replace(/%%COLOR%%/g, value);
                 }
             }
+
+            // If this is the PDF color picker, update the general settings preview
+            if (target.name === 'fti_icon_colors[pdf]') {
+                updatePreviewSvg();
+            }
         });
     });
 
@@ -159,4 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 4000);
         }
     }
+
+    // Initialize Preview States on Load
+    if (sizeNumber) updatePreviewSize(sizeNumber.value);
+    if (positionInput) updatePreviewPosition(positionInput.value);
+    updatePreviewSvg();
 });
