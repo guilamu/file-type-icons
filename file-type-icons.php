@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * Plugin Name: File Type Icons
  * Description: Automatically adds customizable SVG icons to file links (PDF, Word, Excel, PowerPoint, TXT).
- * Version:     1.0.2
+ * Version:     1.0.3
  * Requires PHP: 8.0
  * Requires at least: 6.0
  * Text Domain: file-type-icons
@@ -21,7 +21,7 @@ namespace FileTypeIcons;
 defined('ABSPATH') || exit;
 
 // Plugin constants
-define('FTI_VERSION', '1.0.2');
+define('FTI_VERSION', '1.0.3');
 define('FTI_PLUGIN_FILE', __FILE__);
 define('FTI_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FTI_PLUGIN_URL', plugin_dir_url(__FILE__));

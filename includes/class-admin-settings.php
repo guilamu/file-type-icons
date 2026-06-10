@@ -114,8 +114,10 @@ class AdminSettings {
             return;
         }
         wp_enqueue_style('tabler-icons', 'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css', [], '2.44.0');
-        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', [], time());
-        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', [], time(), true);
+        wp_enqueue_style('coloris-css', FTI_PLUGIN_URL . 'assets/css/coloris.min.css', [], FTI_VERSION);
+        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', ['coloris-css'], time());
+        wp_enqueue_script('coloris-js', FTI_PLUGIN_URL . 'assets/js/coloris.min.js', [], FTI_VERSION, true);
+        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', ['coloris-js'], time(), true);
         wp_localize_script('fti-admin-script', 'ftiAdmin', [
             'templates' => [
                 '1' => IconHandler::SVG_TEMPLATES,
@@ -337,7 +339,7 @@ class AdminSettings {
                                         <div class="cctrl">
                                             <span class="chex" data-type="<?php echo esc_attr($type); ?>"><?php echo esc_html(strtoupper($color)); ?></span>
                                             <div class="cdot" style="background:<?php echo esc_attr($color); ?>;" data-type="<?php echo esc_attr($type); ?>">
-                                                <input type="color" name="fti_icon_colors[<?php echo esc_attr($type); ?>]" value="<?php echo esc_attr($color); ?>" data-default="<?php echo esc_attr($default_color); ?>" class="fti-color-picker" aria-label="<?php echo esc_attr(sprintf(__('Color of %s', 'file-type-icons'), $name_part)); ?>">
+                                                <input type="text" name="fti_icon_colors[<?php echo esc_attr($type); ?>]" value="<?php echo esc_attr($color); ?>" data-default="<?php echo esc_attr($default_color); ?>" class="fti-color-picker" aria-label="<?php echo esc_attr(sprintf(__('Color of %s', 'file-type-icons'), $name_part)); ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -369,6 +371,7 @@ class AdminSettings {
                     <div class="savebar">
                         <button type="submit" id="svbtn"><i class="ti ti-device-floppy" aria-hidden="true"></i> <?php esc_html_e('Save Changes', 'file-type-icons'); ?></button>
                         <span class="smsg" id="svmsg"></span>
+                        <span style="margin-left: auto; font-size: 11px; color: var(--color-text-secondary);"><?php printf(wp_kses(__('Color picker powered by %s', 'file-type-icons'), ['a' => ['href' => true, 'target' => true, 'rel' => true]]), '<a href="https://github.com/mdbassit/Coloris" target="_blank" rel="noopener noreferrer">Coloris</a>'); ?></span>
                     </div>
                 </div>
             </form>

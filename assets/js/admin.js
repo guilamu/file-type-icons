@@ -2,6 +2,29 @@
  * File Type Icons — Admin Script (Premium UI Controls)
  */
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Coloris Color Picker
+    if (typeof Coloris !== 'undefined') {
+        Coloris({
+            el: '.fti-color-picker',
+            wrap: false,
+            theme: 'default',
+            themeMode: 'light',
+            alpha: false,
+            format: 'hex',
+            swatches: [
+                '#E53935', // pdf
+                '#1565C0', // word
+                '#2E7D32', // excel
+                '#D84315', // powerpoint
+                '#616161', // text
+                '#8E24AA', // archives
+                '#D81B60', // audio
+                '#00897B', // images
+                '#F57C00'  // video
+            ]
+        });
+    }
+
     // 1. Size Synchronization (Slider and Numeric Field)
     const sizeSlider = document.getElementById('szsl');
     const sizeNumber = document.getElementById('szni');

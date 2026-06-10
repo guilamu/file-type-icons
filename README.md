@@ -6,7 +6,7 @@ Automatically adds customizable SVG icons to file links (PDF, Word, Excel, Power
 
 ## Custom SVG Icons
 - Display elegant vector graphics next to document links automatically.
-- Colorize icons using HSL tailored colors directly from a native HTML5 color picker.
+- Colorize icons using HSL tailored colors directly from a modern Coloris color picker.
 - Choose between Solid/Filled and Outline icon designs to match your style.
 - Set responsive sizing and align icons to either the left or right of link text.
 
@@ -68,9 +68,11 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 ├── assets
 │   ├── css
 │   │   ├── admin.css             # Styles for settings options page
+│   │   ├── coloris.min.css       # Coloris library styles
 │   │   └── frontend.css          # Frontend layout structures
 │   ├── js
-│   │   └── admin.js              # Settings real-time preview sync script
+│   │   ├── admin.js              # Settings real-time preview sync script
+│   │   └── coloris.min.js        # Coloris library logic
 │   └── icons
 │       └── ...                   # Solid and outline SVG vector assets
 ├── includes
@@ -88,14 +90,14 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.3 - 2026-06-10
+- Integrated the modern Coloris color picker into the admin settings page.
+
 ### 1.0.2 - 2026-06-10
 - Added Style 3 ("Rounded" round gradient badge preset) with real-time settings page preview support.
 
 ### 1.0.1 - 2026-06-10
 - Added Live Link Preview in general settings panel.
-- Fixed layout alignment for Left and Below position styles in settings preview.
-- Fixed layout overlaps when previewing large icon size values.
-- Updated POT/PO translation source files with all missing localized strings.
 
 ### 1.0.0 - 2026-06-10
 - Initial stable release.
@@ -109,6 +111,10 @@ If you discover a security vulnerability in this plugin, please report it respon
 Contributions are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/guilamu/file-type-icons).
 
 For translations, the plugin uses WordPress i18n. You can contribute translations by editing the `.po` files in the `languages/` directory and generating the corresponding `.mo` files with the `wp i18n` CLI commands.
+
+## Credits
+
+- [Coloris](https://github.com/mdbassit/Coloris) - A lightweight, responsive, and dependency-free color picker library by Momo Bassit (MIT License).
 
 ## License
 This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0) — see the [LICENSE](LICENSE.txt) file for details.

@@ -404,7 +404,7 @@
     transform: scale(1.1);
 }
 
-.cdot input[type=color] {
+.cdot input {
     position: absolute;
     inset: 0;
     opacity: 0;
