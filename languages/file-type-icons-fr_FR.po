@@ -1,0 +1,145 @@
+# Copyright (C) 2026 File Type Icons
+# This file is distributed under the same license as the File Type Icons plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: File Type Icons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/file-type-icons\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: WP-CLI\n"
+"X-Domain: file-type-icons\n"
+
+#. Plugin Name of the plugin
+msgid "File Type Icons"
+msgstr "File Type Icons"
+
+#. Description of the plugin
+msgid "Automatically adds customizable SVG icons to file links (PDF, Word, Excel, PowerPoint, TXT)."
+msgstr "Ajoute automatiquement des icônes SVG personnalisables aux liens vers des fichiers (PDF, Word, Excel, PowerPoint, TXT)."
+
+msgid "Settings"
+msgstr "Réglages"
+
+msgid "File Type Icons Settings"
+msgstr "Réglages de File Type Icons"
+
+msgid "Disable icons on this page"
+msgstr "Désactiver les icônes sur cette page"
+
+msgid "File Type Icons — WordPress Plugin Settings"
+msgstr "File Type Icons — Réglages du plugin WordPress"
+
+msgid "General Settings"
+msgstr "Réglages généraux"
+
+msgid "Icon Size"
+msgstr "Taille des icônes"
+
+msgid "Displayed dimension, in pixels"
+msgstr "Dimension affichée, en pixels"
+
+msgid "Icon Position"
+msgstr "Position de l'icône"
+
+msgid "Relative to the link text"
+msgstr "Par rapport au texte du lien"
+
+msgid "Left"
+msgstr "Gauche"
+
+msgid "Right"
+msgstr "Droite"
+
+msgid "Above"
+msgstr "Au-dessus"
+
+msgid "Below"
+msgstr "En dessous"
+
+msgid "Icon Style"
+msgstr "Style des icônes"
+
+msgid "Visual file rendering"
+msgstr "Rendu visuel des fichiers"
+
+msgid "Filled"
+msgstr "Plein / rempli"
+
+msgid "Outline"
+msgstr "Contours / outline"
+
+msgid "File Types & Colors"
+msgstr "Types de fichiers & couleurs"
+
+msgid "types"
+msgstr "types"
+
+msgid "Check All"
+msgstr "Tout cocher"
+
+msgid "Uncheck All"
+msgstr "Tout décocher"
+
+msgid "Reset Colors"
+msgstr "Réinitialiser les couleurs"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "File Type"
+msgstr "Type de fichier"
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "PDF (.pdf)"
+msgstr "PDF (.pdf)"
+
+msgid "Microsoft Word & OpenDocument (.doc, .docx, .odt, .rtf)"
+msgstr "Microsoft Word & OpenDocument (.doc, .docx, .odt, .rtf)"
+
+msgid "Microsoft Excel, CSV & OpenDocument (.xls, .xlsx, .csv, .ods)"
+msgstr "Microsoft Excel, CSV & OpenDocument (.xls, .xlsx, .csv, .ods)"
+
+msgid "Microsoft PowerPoint & OpenDocument (.ppt, .pptx, .odp)"
+msgstr "Microsoft PowerPoint & OpenDocument (.ppt, .pptx, .odp)"
+
+msgid "Text File (.txt)"
+msgstr "Fichier Texte (.txt)"
+
+msgid "Archive (.zip, .rar, .tar, .gz, .7z)"
+msgstr "Archive (.zip, .rar, .tar, .gz, .7z)"
+
+msgid "Audio (.mp3, .wav, .m4a, .flac)"
+msgstr "Audio (.mp3, .wav, .m4a, .flac)"
+
+msgid "Image (.jpg, .png, .gif, .svg, .webp, .odg)"
+msgstr "Image (.jpg, .png, .gif, .svg, .webp, .odg)"
+
+msgid "Video (.mp4, .avi, .mov, .mkv, .webm)"
+msgstr "Vidéo (.mp4, .avi, .mov, .mkv, .webm)"
+
+msgid "Enable %s"
+msgstr "Activer %s"
+
+msgid "Color of %s"
+msgstr "Couleur de %s"
+
+msgid "Class Exclusions"
+msgstr "Exclusions de classes"
+
+msgid "CSS classes to exclude"
+msgstr "Classes CSS à exclure"
+
+msgid "One class per line, without the leading dot. Any link containing one of them will be ignored."
+msgstr "Une classe par ligne, sans le point initial. Tout lien contenant l'une d'elles sera ignoré."
+
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+msgid "Changes saved successfully"
+msgstr "Modifications enregistrées à l'instant"

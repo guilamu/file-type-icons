@@ -1,0 +1,14 @@
+/* File Type Icons — Frontend Stylesheet */
+:root {
+    --fti-icon-size: 20px;
+}
+
+a.fti-link::before,
+a.fti-link::after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}

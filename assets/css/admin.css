@@ -1,0 +1,495 @@
+/* File Type Icons — Admin Stylesheet (Premium Light Theme) */
+
+.wp-sti {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f6f8fa;
+    --color-background-info: #eef5fc;
+    
+    --color-text-primary: #1f2328;
+    --color-text-secondary: #656d76;
+    --color-text-info: #0969da;
+    
+    --color-border-primary: #d0d7de;
+    --color-border-secondary: #d8dee4;
+    --color-border-tertiary: #ebeff2;
+    
+    --border-radius-lg: 12px;
+    --border-radius-md: 8px;
+    --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    
+    padding: .25rem 0;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 800px;
+}
+
+.wp-sti * {
+    box-sizing: border-box;
+}
+
+.s-hdr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+}
+
+.s-hdr-ic {
+    width: 38px;
+    height: 38px;
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.s-card {
+    background: var(--color-background-primary);
+    border: .5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.s-ch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-bottom: .5px solid var(--color-border-tertiary);
+    background: #fafbfc;
+}
+
+.s-ct {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.s-cbadge {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    background: var(--color-background-secondary);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+    border: .5px solid var(--color-border-secondary);
+}
+
+.s-cb {
+    padding: 18px;
+}
+
+.frow {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    padding: 16px 0;
+    border-bottom: .5px solid var(--color-border-tertiary);
+}
+
+.frow:first-child {
+    padding-top: 0;
+}
+
+.frow:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.fl {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.fh {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.szr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Custom premium slider */
+.szr input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-border-secondary);
+    outline: none;
+}
+
+.szr input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #185FA5;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.1s ease;
+    border: none;
+}
+
+.szr input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #15518d;
+}
+
+.szr input[type=number] {
+    width: 64px;
+    border: .5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 6px 10px;
+    font-size: 13px;
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+    outline: none;
+}
+
+.szr input[type=number]:focus {
+    border-color: var(--color-border-info);
+    box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.15);
+}
+
+.szunit {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.pgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.pbtn {
+    border: .5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 12px 6px;
+    background: var(--color-background-primary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.pbtn:hover {
+    background: var(--color-background-secondary);
+    border-color: var(--color-border-primary);
+}
+
+.pbtn.on {
+    border-color: var(--color-border-info);
+    background: var(--color-background-info);
+    box-shadow: 0 0 0 1px var(--color-text-info);
+}
+
+.pbtn i {
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    transition: color 0.12s ease;
+}
+
+.pbtn.on i {
+    color: var(--color-text-info);
+}
+
+.pbtn em {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: color 0.12s ease;
+}
+
+.pbtn.on em {
+    color: var(--color-text-info);
+}
+
+.seg {
+    display: flex;
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 3px;
+    gap: 2px;
+    width: fit-content;
+    border: .5px solid var(--color-border-secondary);
+}
+
+.sbtn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: .5px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    font-family: inherit;
+    transition: all .12s;
+}
+
+.sbtn.on {
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border-tertiary);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.ftbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.ftcols {
+    display: grid;
+    grid-template-columns: 36px 36px 1fr 120px;
+    gap: 12px;
+    padding: 6px 14px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary);
+    border-bottom: .5px solid var(--color-border-tertiary);
+}
+
+.ftrow {
+    display: grid;
+    grid-template-columns: 36px 36px 1fr 120px;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: var(--border-radius-md);
+    border: .5px solid var(--color-border-tertiary);
+    margin-bottom: 6px;
+    background: var(--color-background-primary);
+    transition: all .12s ease;
+}
+
+.ftrow:last-child {
+    margin-bottom: 0;
+}
+
+.ftrow:hover {
+    border-color: var(--color-border-secondary);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.ftrow.off {
+    opacity: .5;
+}
+
+/* Custom premium toggles */
+.tgl {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.tgl input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.ts {
+    position: absolute;
+    inset: 0;
+    background: var(--color-border-primary);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background-color .18s ease;
+}
+
+.ts:before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 3px;
+    bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .18s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+}
+
+.tgl input:checked + .ts {
+    background: #185FA5;
+}
+
+.tgl input:checked + .ts:before {
+    transform: translateX(14px);
+}
+
+.fti-admin-preview-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.fti-admin-preview-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.ftname {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.ftext {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    margin-top: 2px;
+}
+
+.cctrl {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.chex {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.cdot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #ffffff;
+    box-shadow: 0 0 0 1px var(--color-border-secondary);
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: transform 0.1s ease;
+}
+
+.cdot:hover {
+    transform: scale(1.1);
+}
+
+.cdot input[type=color] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.xcta {
+    width: 100%;
+    border: .5px solid var(--color-border-secondary);
+    border-radius: var(--border-radius-md);
+    padding: 10px 12px;
+    font-size: 12px;
+    font-family: var(--font-mono);
+    color: var(--color-text-primary);
+    background: var(--color-background-secondary);
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: all 0.15s ease;
+}
+
+.xcta:focus {
+    border-color: var(--color-border-info);
+    background: var(--color-background-primary);
+    box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.15);
+}
+
+.savebar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 14px;
+}
+
+.smsg {
+    font-size: 12px;
+    color: var(--color-text-info);
+    font-weight: 500;
+}
+
+/* General button styling inside the premium panel */
+.wp-sti button:not(.pbtn):not(.sbtn) {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--border-radius-md);
+    border: .5px solid var(--color-border-secondary);
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .12s ease;
+}
+
+.wp-sti button:not(.pbtn):not(.sbtn):hover {
+    background: var(--color-background-secondary);
+    border-color: var(--color-border-primary);
+}
+
+.wp-sti button:not(.pbtn):not(.sbtn):active {
+    background: #eaeaea;
+}
+
+.wp-sti button:not(.pbtn):not(.sbtn):disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Specific styling for the primary save button */
+.wp-sti button#svbtn {
+    background: #185FA5;
+    color: #ffffff;
+    border-color: #124e8a;
+    padding: 10px 18px;
+    font-size: 13px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.wp-sti button#svbtn:hover {
+    background: #15518d;
+}
+
+.wp-sti button#svbtn:active {
+    background: #0f3c69;
+}
