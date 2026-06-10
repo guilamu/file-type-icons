@@ -130,29 +130,35 @@ class AdminSettings {
      */
     public function register_settings(): void {
         register_setting('fti_settings_group', 'fti_icon_size', [
+            'type'              => 'integer',
             'sanitize_callback' => [$this, 'sanitize_icon_size'],
             'default'           => 20
         ]);
         register_setting('fti_settings_group', 'fti_icon_position', [
+            'type'              => 'string',
             'sanitize_callback' => [$this, 'sanitize_icon_position'],
             'default'           => 'left'
         ]);
         register_setting('fti_settings_group', 'fti_icon_style', [
+            'type'              => 'integer',
             'sanitize_callback' => [$this, 'sanitize_icon_style'],
             'default'           => 1
         ]);
 
         register_setting('fti_settings_group', 'fti_active_types', [
+            'type'              => 'array',
             'sanitize_callback' => [$this, 'sanitize_active_types'],
             'default'           => ['pdf', 'word', 'excel', 'powerpoint', 'text', 'archives', 'audio', 'images', 'video']
         ]);
 
         register_setting('fti_settings_group', 'fti_icon_colors', [
+            'type'              => 'object',
             'sanitize_callback' => [$this, 'sanitize_icon_colors'],
             'default'           => self::DEFAULT_COLORS
         ]);
 
         register_setting('fti_settings_group', 'fti_exclude_classes', [
+            'type'              => 'array',
             'sanitize_callback' => [$this, 'sanitize_exclude_classes'],
             'default'           => []
         ]);
