@@ -32,6 +32,9 @@ msgstr "Réglages de File Type Icons"
 msgid "Disable icons on this page"
 msgstr "Désactiver les icônes sur cette page"
 
+msgid "View details"
+msgstr "Voir les détails"
+
 msgid "General Settings"
 msgstr "Réglages généraux"
 

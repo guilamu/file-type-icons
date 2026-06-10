@@ -187,7 +187,7 @@ class AdminSettings {
         ];
         ?>
         <div class="wrap">
-            <h2 class="sr-only"><?php esc_html_e('File Type Icons — WordPress Plugin Settings', 'file-type-icons'); ?></h2>
+            <h2 class="sr-only"><?php esc_html_e('File Type Icons', 'file-type-icons'); ?></h2>
             <form action="options.php" method="post" id="fti-settings-form">
                 <?php settings_fields('fti_settings_group'); ?>
                 

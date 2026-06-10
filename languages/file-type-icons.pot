@@ -31,7 +31,7 @@ msgstr ""
 msgid "Disable icons on this page"
 msgstr ""
 
-msgid "File Type Icons"
+msgid "View details"
 msgstr ""
 
 msgid "General Settings"
