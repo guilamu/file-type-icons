@@ -229,6 +229,7 @@
 
 .seg {
     display: flex;
+    flex-wrap: wrap;
     background: var(--color-background-secondary);
     border-radius: var(--border-radius-md);
     padding: 3px;
@@ -547,7 +548,7 @@
     font-size: 15px;
     font-weight: 500;
     color: #0969da !important; /* GitHub Link color */
-    pointer-events: none; /* Make link non-clickable */
+    cursor: pointer;
 }
 
 .fti-preview-link:hover {
@@ -587,4 +588,21 @@
 .sr-only {
     padding-bottom: 9px;
 }
+
+/* Live Preview Hover Effects inside .fti-preview-card */
+.fti-preview-link .fti-preview-icon-wrap {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lift */
+.fti-preview-link.fti-hover-lift:hover .fti-preview-icon-wrap {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+}
+
+/* Zoom */
+.fti-preview-link.fti-hover-zoom:hover .fti-preview-icon-wrap {
+    transform: scale(1.05);
+}
+
 

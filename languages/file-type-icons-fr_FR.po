@@ -166,3 +166,17 @@ msgstr "Impossible de renommer le dossier de mise à jour. Veuillez réessayer o
 
 msgid "Rounded"
 msgstr "Arrondi"
+
+msgid "Hover Effect"
+msgstr "Effet au survol"
+
+msgid "Mouse hover animation on links"
+msgstr "Animation au survol de la souris sur les liens"
+
+msgid "Lift"
+msgstr "Lift"
+
+msgid "Zoom"
+msgstr "Zoom"
+
+

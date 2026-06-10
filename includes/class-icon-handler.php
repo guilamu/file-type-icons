@@ -297,6 +297,7 @@ class IconHandler
         $active = get_option('fti_active_types', ['pdf', 'word', 'excel', 'powerpoint', 'text']);
         $colors = get_option('fti_icon_colors', self::DEFAULT_COLORS);
         $style = (int) get_option('fti_icon_style', 1);
+        $hover_effect = get_option('fti_hover_effect', 'none');
 
         $pseudo = in_array($position, ['left', 'above'], true) ? 'before' : 'after';
 
@@ -323,6 +324,23 @@ class IconHandler
     height: {$size}px;
     {$margin_property}: {$margin_value};
 }\n";
+
+        if ($hover_effect === 'lift') {
+            $css .= "a.fti-link::{$pseudo} {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), filter 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a.fti-link:hover::{$pseudo} {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+}\n";
+        } elseif ($hover_effect === 'zoom') {
+            $css .= "a.fti-link::{$pseudo} {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a.fti-link:hover::{$pseudo} {
+    transform: scale(1.05);
+}\n";
+        }
 
         // Generate one CSS rule per extension (to show the correct label inside the SVG)
         foreach ($active as $type) {

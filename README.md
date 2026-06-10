@@ -90,6 +90,9 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.4 - 2026-06-10
+- Added customizable mouse hover effects (Lift and Zoom) for frontend file link icons with an interactive live settings preview.
+
 ### 1.0.3 - 2026-06-10
 - Integrated the modern Coloris color picker into the admin settings page.
 

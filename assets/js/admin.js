@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 3. Icon Style (Segmented Control)
-    const styleButtons = document.querySelectorAll('.sbtn');
+    const styleButtons = document.querySelectorAll('#fti-style-seg .sbtn');
     const styleInput = document.getElementById('fti_icon_style');
     styleButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -71,6 +71,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // 3b. Hover Effect (Segmented Control)
+    const hoverButtons = document.querySelectorAll('#fti-hover-seg .sbtn');
+    const hoverInput = document.getElementById('fti_hover_effect');
+    hoverButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            hoverButtons.forEach(b => b.classList.remove('on'));
+            btn.classList.add('on');
+            if (hoverInput) {
+                const hoverVal = btn.getAttribute('data-value');
+                hoverInput.value = hoverVal;
+                updatePreviewHoverEffect(hoverVal);
+            }
+        });
+    });
+
+    const updatePreviewHoverEffect = (hoverEffect) => {
+        if (!previewLink) return;
+        previewLink.classList.forEach(cls => {
+            if (cls.startsWith('fti-hover-')) {
+                previewLink.classList.remove(cls);
+            }
+        });
+        previewLink.classList.add('fti-hover-' + hoverEffect);
+    };
 
     // Live Link Preview Synchronizers
     const previewIconWrap = document.querySelector('.fti-preview-icon-wrap');

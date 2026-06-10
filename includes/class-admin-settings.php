@@ -144,6 +144,10 @@ class AdminSettings {
             'sanitize_callback' => [$this, 'sanitize_icon_style'],
             'default'           => 1
         ]);
+        register_setting('fti_settings_group', 'fti_hover_effect', [
+            'sanitize_callback' => [$this, 'sanitize_hover_effect'],
+            'default'           => 'none'
+        ]);
 
         register_setting('fti_settings_group', 'fti_active_types', [
             'sanitize_callback' => [$this, 'sanitize_active_types'],
@@ -172,6 +176,7 @@ class AdminSettings {
         $size = (int) get_option('fti_icon_size', 20);
         $position = get_option('fti_icon_position', 'left');
         $style = (int) get_option('fti_icon_style', 1);
+        $hover_effect = get_option('fti_hover_effect', 'none');
         $active = get_option('fti_active_types', ['pdf', 'word', 'excel', 'powerpoint', 'text', 'archives', 'audio', 'images', 'video']);
         $colors = get_option('fti_icon_colors', self::DEFAULT_COLORS);
         $exclusions = get_option('fti_exclude_classes', []);
@@ -232,11 +237,23 @@ class AdminSettings {
                                         <div class="fl"><?php esc_html_e('Icon Style', 'file-type-icons'); ?></div>
                                         <div class="fh"><?php esc_html_e('Visual file rendering', 'file-type-icons'); ?></div>
                                     </div>
-                                    <div class="seg">
+                                    <div class="seg" id="fti-style-seg">
                                         <input type="hidden" name="fti_icon_style" id="fti_icon_style" value="<?php echo esc_attr($style); ?>">
                                         <button type="button" class="sbtn <?php echo ($style === 1) ? 'on' : ''; ?>" data-value="1"><?php esc_html_e('Filled', 'file-type-icons'); ?></button>
                                         <button type="button" class="sbtn <?php echo ($style === 2) ? 'on' : ''; ?>" data-value="2"><?php esc_html_e('Outline', 'file-type-icons'); ?></button>
                                         <button type="button" class="sbtn <?php echo ($style === 3) ? 'on' : ''; ?>" data-value="3"><?php esc_html_e('Rounded', 'file-type-icons'); ?></button>
+                                    </div>
+                                </div>
+                                <div class="frow">
+                                    <div>
+                                        <div class="fl"><?php esc_html_e('Hover Effect', 'file-type-icons'); ?></div>
+                                        <div class="fh"><?php esc_html_e('Mouse hover animation on links', 'file-type-icons'); ?></div>
+                                    </div>
+                                    <div class="seg" id="fti-hover-seg">
+                                        <input type="hidden" name="fti_hover_effect" id="fti_hover_effect" value="<?php echo esc_attr($hover_effect); ?>">
+                                        <button type="button" class="sbtn <?php echo ($hover_effect === 'none') ? 'on' : ''; ?>" data-value="none"><?php esc_html_e('None', 'file-type-icons'); ?></button>
+                                        <button type="button" class="sbtn <?php echo ($hover_effect === 'lift') ? 'on' : ''; ?>" data-value="lift"><?php esc_html_e('Lift', 'file-type-icons'); ?></button>
+                                        <button type="button" class="sbtn <?php echo ($hover_effect === 'zoom') ? 'on' : ''; ?>" data-value="zoom"><?php esc_html_e('Zoom', 'file-type-icons'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +275,7 @@ class AdminSettings {
                                     $icon_order = in_array($position, ['left', 'above'], true) ? 'order: 1;' : 'order: 2;';
                                     $text_order = in_array($position, ['left', 'above'], true) ? 'order: 2;' : 'order: 1;';
                                     ?>
-                                    <a href="#" class="fti-preview-link" style="display: inline-flex; align-items: center; justify-content: center; flex-direction: <?php echo esc_attr($flex_direction); ?>;" onclick="return false;">
+                                    <a href="#" class="fti-preview-link fti-hover-<?php echo esc_attr($hover_effect); ?>" style="display: inline-flex; align-items: center; justify-content: center; flex-direction: <?php echo esc_attr($flex_direction); ?>;" onclick="return false;">
                                         <span class="fti-preview-icon-wrap" style="width: <?php echo esc_attr($size); ?>px; height: <?php echo esc_attr($size); ?>px; <?php echo esc_attr($margin_style); ?> <?php echo esc_attr($icon_order); ?>">
                                             <?php
                                             echo IconHandler::generate_svg('pdf', $style, $colors['pdf'] ?? '#E53935');
@@ -401,6 +418,14 @@ class AdminSettings {
     public function sanitize_icon_style($input): int {
         $val = absint($input);
         return ($val === 1 || $val === 2 || $val === 3) ? $val : 1;
+    }
+
+    /**
+     * Sanitizes Hover Effect.
+     */
+    public function sanitize_hover_effect($input): string {
+        $val = sanitize_text_field($input);
+        return in_array($val, ['none', 'lift', 'zoom'], true) ? $val : 'none';
     }
 
     /**

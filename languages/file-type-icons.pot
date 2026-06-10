@@ -166,3 +166,16 @@ msgstr ""
 msgid "Rounded"
 msgstr ""
 
+msgid "Hover Effect"
+msgstr ""
+
+msgid "Mouse hover animation on links"
+msgstr ""
+
+msgid "Lift"
+msgstr ""
+
+msgid "Zoom"
+msgstr ""
+
+
