@@ -130,35 +130,29 @@ class AdminSettings {
      */
     public function register_settings(): void {
         register_setting('fti_settings_group', 'fti_icon_size', [
-            'type'              => 'integer',
             'sanitize_callback' => [$this, 'sanitize_icon_size'],
             'default'           => 20
         ]);
         register_setting('fti_settings_group', 'fti_icon_position', [
-            'type'              => 'string',
             'sanitize_callback' => [$this, 'sanitize_icon_position'],
             'default'           => 'left'
         ]);
         register_setting('fti_settings_group', 'fti_icon_style', [
-            'type'              => 'integer',
             'sanitize_callback' => [$this, 'sanitize_icon_style'],
             'default'           => 1
         ]);
 
         register_setting('fti_settings_group', 'fti_active_types', [
-            'type'              => 'array',
             'sanitize_callback' => [$this, 'sanitize_active_types'],
             'default'           => ['pdf', 'word', 'excel', 'powerpoint', 'text', 'archives', 'audio', 'images', 'video']
         ]);
 
         register_setting('fti_settings_group', 'fti_icon_colors', [
-            'type'              => 'object',
             'sanitize_callback' => [$this, 'sanitize_icon_colors'],
             'default'           => self::DEFAULT_COLORS
         ]);
 
         register_setting('fti_settings_group', 'fti_exclude_classes', [
-            'type'              => 'string',
             'sanitize_callback' => [$this, 'sanitize_exclude_classes'],
             'default'           => []
         ]);
@@ -439,9 +433,23 @@ class AdminSettings {
      * Sanitizes exclusion classes.
      */
     public function sanitize_exclude_classes($input): array {
+        if (is_array($input)) {
+            $sanitized = [];
+            foreach ($input as $line) {
+                if (is_string($line)) {
+                    $class = sanitize_html_class(trim($line));
+                    if (!empty($class)) {
+                        $sanitized[] = $class;
+                    }
+                }
+            }
+            return $sanitized;
+        }
+
         if (!is_string($input)) {
             return [];
         }
+        
         $lines = explode("\n", $input);
         $sanitized = [];
         foreach ($lines as $line) {
