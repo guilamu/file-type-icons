@@ -158,7 +158,7 @@ class AdminSettings {
         ]);
 
         register_setting('fti_settings_group', 'fti_exclude_classes', [
-            'type'              => 'array',
+            'type'              => 'string',
             'sanitize_callback' => [$this, 'sanitize_exclude_classes'],
             'default'           => []
         ]);
