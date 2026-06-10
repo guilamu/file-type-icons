@@ -93,9 +93,6 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ### 1.0.1 - 2026-06-10
 - Added Live Link Preview in general settings panel.
-- Fixed layout alignment for Left and Below position styles in settings preview.
-- Fixed layout overlaps when previewing large icon size values.
-- Updated POT/PO translation source files with all missing localized strings.
 
 ### 1.0.0 - 2026-06-10
 - Initial stable release.
