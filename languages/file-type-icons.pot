@@ -31,7 +31,7 @@ msgstr ""
 msgid "Disable icons on this page"
 msgstr ""
 
-msgid "File Type Icons — WordPress Plugin Settings"
+msgid "File Type Icons"
 msgstr ""
 
 msgid "General Settings"

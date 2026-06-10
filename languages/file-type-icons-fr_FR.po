@@ -32,9 +32,6 @@ msgstr "Réglages de File Type Icons"
 msgid "Disable icons on this page"
 msgstr "Désactiver les icônes sur cette page"
 
-msgid "File Type Icons — WordPress Plugin Settings"
-msgstr "File Type Icons — Réglages du plugin WordPress"
-
 msgid "General Settings"
 msgstr "Réglages généraux"
 
