@@ -120,6 +120,7 @@ class AdminSettings {
             'templates' => [
                 '1' => IconHandler::SVG_TEMPLATES,
                 '2' => IconHandler::SVG_TEMPLATES_STYLE_2,
+                '3' => IconHandler::get_style_3_templates(),
             ],
             'savedMsg' => esc_html__('Changes saved successfully', 'file-type-icons')
         ]);
@@ -233,6 +234,7 @@ class AdminSettings {
                                         <input type="hidden" name="fti_icon_style" id="fti_icon_style" value="<?php echo esc_attr($style); ?>">
                                         <button type="button" class="sbtn <?php echo ($style === 1) ? 'on' : ''; ?>" data-value="1"><?php esc_html_e('Filled', 'file-type-icons'); ?></button>
                                         <button type="button" class="sbtn <?php echo ($style === 2) ? 'on' : ''; ?>" data-value="2"><?php esc_html_e('Outline', 'file-type-icons'); ?></button>
+                                        <button type="button" class="sbtn <?php echo ($style === 3) ? 'on' : ''; ?>" data-value="3"><?php esc_html_e('Rounded', 'file-type-icons'); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -257,11 +259,7 @@ class AdminSettings {
                                     <a href="#" class="fti-preview-link" style="display: inline-flex; align-items: center; justify-content: center; flex-direction: <?php echo esc_attr($flex_direction); ?>;" onclick="return false;">
                                         <span class="fti-preview-icon-wrap" style="width: <?php echo esc_attr($size); ?>px; height: <?php echo esc_attr($size); ?>px; <?php echo esc_attr($margin_style); ?> <?php echo esc_attr($icon_order); ?>">
                                             <?php
-                                            $templates = ($style === 2) ? IconHandler::SVG_TEMPLATES_STYLE_2 : IconHandler::SVG_TEMPLATES;
-                                            $pdf_color = $colors['pdf'] ?? '#E53935';
-                                            if (isset($templates['pdf'])) {
-                                                echo str_replace('%%COLOR%%', $pdf_color, $templates['pdf']);
-                                            }
+                                            echo IconHandler::generate_svg('pdf', $style, $colors['pdf'] ?? '#E53935');
                                             ?>
                                         </span>
                                         <span class="fti-preview-text" style="<?php echo esc_attr($text_order); ?>"><?php esc_html_e('doc.pdf', 'file-type-icons'); ?></span>
@@ -315,11 +313,19 @@ class AdminSettings {
                                             <span class="ts"></span>
                                         </label>
                                         <?php
-                                        $templates = ($style === 2) ? IconHandler::SVG_TEMPLATES_STYLE_2 : IconHandler::SVG_TEMPLATES;
-                                        $svg_html = '';
-                                        if (isset($templates[$type])) {
-                                            $svg_html = str_replace('%%COLOR%%', $color, $templates[$type]);
-                                        }
+                                        $type_ext_map = [
+                                            'pdf'        => 'pdf',
+                                            'word'       => 'doc',
+                                            'excel'      => 'xls',
+                                            'powerpoint' => 'ppt',
+                                            'text'       => 'txt',
+                                            'archives'   => 'zip',
+                                            'audio'      => 'mp3',
+                                            'images'     => 'img',
+                                            'video'      => 'vid',
+                                        ];
+                                        $ext_for_preview = $type_ext_map[$type] ?? $type;
+                                        $svg_html = IconHandler::generate_svg($ext_for_preview, $style, $color);
                                         ?>
                                         <div class="fti-admin-preview-icon" data-type="<?php echo esc_attr($type); ?>">
                                             <?php echo $svg_html; ?>
@@ -391,7 +397,7 @@ class AdminSettings {
      */
     public function sanitize_icon_style($input): int {
         $val = absint($input);
-        return ($val === 1 || $val === 2) ? $val : 1;
+        return ($val === 1 || $val === 2 || $val === 3) ? $val : 1;
     }
 
     /**

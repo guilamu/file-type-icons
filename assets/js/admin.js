@@ -90,6 +90,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const adjustBrightness = (hex, percent) => {
+        let num = parseInt(hex.replace("#", ""), 16),
+            amt = Math.round(2.55 * percent),
+            R = (num >> 16) + amt,
+            G = (num >> 8 & 0x00FF) + amt,
+            B = (num & 0x0000FF) + amt;
+        return "#" + (0x1000000 + (R < 255 ? R < 0 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 0 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 0 ? 0 : B : 255)).toString(16).slice(1);
+    };
+
+    const getSvgWithColor = (template, styleVal, color) => {
+        if (!template) return '';
+        if (styleVal === '3') {
+            const colorLight = adjustBrightness(color, 20);
+            const colorDark = adjustBrightness(color, -30);
+            return template.replace(/%%COLOR_LIGHT%%/g, colorLight).replace(/%%COLOR_DARK%%/g, colorDark);
+        }
+        return template.replace(/%%COLOR%%/g, color);
+    };
+
     const updatePreviewSvg = () => {
         if (!previewIconWrap) return;
         const styleVal = styleInput ? styleInput.value : '1';
@@ -99,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.ftiAdmin && window.ftiAdmin.templates && window.ftiAdmin.templates[styleVal]) {
             const template = window.ftiAdmin.templates[styleVal]['pdf'];
             if (template) {
-                previewIconWrap.innerHTML = template.replace(/%%COLOR%%/g, color);
+                previewIconWrap.innerHTML = getSvgWithColor(template, styleVal, color);
             }
         }
     };
@@ -118,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.ftiAdmin && window.ftiAdmin.templates && window.ftiAdmin.templates[styleVal]) {
                 const template = window.ftiAdmin.templates[styleVal][type];
                 if (template) {
-                    previewContainer.innerHTML = template.replace(/%%COLOR%%/g, color);
+                    previewContainer.innerHTML = getSvgWithColor(template, styleVal, color);
                 }
             }
         });
@@ -164,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (previewContainer && window.ftiAdmin && window.ftiAdmin.templates && window.ftiAdmin.templates[styleVal]) {
                 const template = window.ftiAdmin.templates[styleVal][type];
                 if (template) {
-                    previewContainer.innerHTML = template.replace(/%%COLOR%%/g, value);
+                    previewContainer.innerHTML = getSvgWithColor(template, styleVal, value);
                 }
             }
 

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the File Type Icons plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: File Type Icons 1.0.1\n"
+"Project-Id-Version: File Type Icons 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/file-type-icons\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
@@ -163,3 +163,6 @@ msgstr "doc.pdf"
 
 msgid "Unable to rename the update folder. Please retry or update manually."
 msgstr "Impossible de renommer le dossier de mise à jour. Veuillez réessayer ou effectuer la mise à jour manuellement."
+
+msgid "Rounded"
+msgstr "Arrondi"

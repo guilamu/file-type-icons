@@ -100,7 +100,65 @@ class IconHandler
     /**
      * Base SVG template for Style 2 (Outline) with placeholders %%COLOR%%, %%LABEL%%, %%FONTSIZE%%, %%TEXTY%%.
      */
+    /**
+     * Base SVG template for Style 2 (Outline) with placeholders %%COLOR%%, %%LABEL%%, %%FONTSIZE%%, %%TEXTY%%.
+     */
     public const SVG_BASE_STYLE_2 = '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="%%COLOR%%" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><text x="12" y="%%TEXTY%%" font-size="%%FONTSIZE%%" font-family="system-ui, -apple-system, sans-serif" font-weight="bold" text-anchor="middle" fill="%%COLOR%%" stroke="none">%%LABEL%%</text></svg>';
+
+    /**
+     * Base SVG template for Style 3 (Rounded) with placeholders %%COLOR_LIGHT%%, %%COLOR_DARK%%, %%EXT%%, %%LABEL%%, %%FONTSIZE%%, %%TEXTY%%.
+     */
+    public const SVG_BASE_STYLE_3 = '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad_badge_%%EXT%%" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="%%COLOR_LIGHT%%"/><stop offset="100%" stop-color="%%COLOR_DARK%%"/></linearGradient><filter id="shadow_internal_%%EXT%%" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceAlpha" stdDeviation="0.8"/><feOffset dx="0" dy="1"/><feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/><feBlend mode="normal" in2="SourceGraphic" result="shadow"/></filter></defs><circle cx="12" cy="12" r="11" fill="url(#grad_badge_%%EXT%%)" filter="url(#shadow_internal_%%EXT%%)"/><path d="M11 6H13.5L16 8.5V14C16 14.5523 15.5523 15 15 15H9C8.44772 15 8 14.5523 8 14V7C8 6.44772 8.44772 6 9 6H11Z" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><text x="12" y="%%TEXTY%%" font-size="%%FONTSIZE%%" font-family="system-ui, -apple-system, sans-serif" font-weight="bold" text-anchor="middle" fill="white">%%LABEL%%</text></svg>';
+
+    /**
+     * Adjusts the brightness of a HEX color.
+     *
+     * @param string $hex Hex color code (with or without #).
+     * @param int $steps Steps to adjust (positive to lighten, negative to darken).
+     * @return string Adjusted HEX color code.
+     */
+    public static function adjust_brightness(string $hex, int $steps): string
+    {
+        $hex = ltrim($hex, '#');
+        if (strlen($hex) === 3) {
+            $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+        }
+
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+
+        $r = max(0, min(255, $r + $steps));
+        $g = max(0, min(255, $g + $steps));
+        $b = max(0, min(255, $b + $steps));
+
+        return '#' . str_pad(dechex($r), 2, '0', STR_PAD_LEFT) . 
+                     str_pad(dechex($g), 2, '0', STR_PAD_LEFT) . 
+                     str_pad(dechex($b), 2, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Generates SVG templates for Style 3 with placeholders for localization.
+     */
+    public static function get_style_3_templates(): array
+    {
+        $templates = [];
+        $type_ext_map = [
+            'pdf'        => 'pdf',
+            'word'       => 'doc',
+            'excel'      => 'xls',
+            'powerpoint' => 'ppt',
+            'text'       => 'txt',
+            'archives'   => 'zip',
+            'audio'      => 'mp3',
+            'images'     => 'img',
+            'video'      => 'vid',
+        ];
+        foreach ($type_ext_map as $type => $ext) {
+            $templates[$type] = self::generate_svg($ext, 3, '%%COLOR%%');
+        }
+        return $templates;
+    }
 
     /**
      * Generates an SVG for a given extension, style, and color.
@@ -110,24 +168,45 @@ class IconHandler
         $label = strtoupper($ext);
         $len = strlen($label);
 
-        // Adjust font sizes and vertical positioning based on label length.
-        // The background rect goes from y=12 to y=19, center is y=15.5.
-        // y is the text baseline: adjusted to visually center capital letters.
         if ($style === 2) {
             $font_size = ($len > 3) ? '4' : '5';
             $text_y = ($len > 3) ? '16.7' : '17';
             $base = self::SVG_BASE_STYLE_2;
+            
+            return str_replace(
+                ['%%COLOR%%', '%%LABEL%%', '%%FONTSIZE%%', '%%TEXTY%%'],
+                [$color, $label, $font_size, $text_y],
+                $base
+            );
+        } elseif ($style === 3) {
+            $font_size = ($len > 3) ? '3.0' : '3.8';
+            $text_y = ($len > 3) ? '20.2' : '20.5';
+            $base = self::SVG_BASE_STYLE_3;
+            
+            if ($color === '%%COLOR%%') {
+                $color_light = '%%COLOR_LIGHT%%';
+                $color_dark = '%%COLOR_DARK%%';
+            } else {
+                $color_light = self::adjust_brightness($color, 20);
+                $color_dark = self::adjust_brightness($color, -30);
+            }
+            
+            return str_replace(
+                ['%%COLOR_LIGHT%%', '%%COLOR_DARK%%', '%%EXT%%', '%%LABEL%%', '%%FONTSIZE%%', '%%TEXTY%%'],
+                [$color_light, $color_dark, $ext, $label, $font_size, $text_y],
+                $base
+            );
         } else {
             $font_size = ($len > 3) ? '3.5' : '4.5';
             $text_y = ($len > 3) ? '16.7' : '17.2';
             $base = self::SVG_BASE_STYLE_1;
+            
+            return str_replace(
+                ['%%COLOR%%', '%%LABEL%%', '%%FONTSIZE%%', '%%TEXTY%%'],
+                [$color, $label, $font_size, $text_y],
+                $base
+            );
         }
-
-        return str_replace(
-            ['%%COLOR%%', '%%LABEL%%', '%%FONTSIZE%%', '%%TEXTY%%'],
-            [$color, $label, $font_size, $text_y],
-            $base
-        );
     }
 
     /**

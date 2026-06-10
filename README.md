@@ -88,8 +88,14 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.2 - 2026-06-10
+- Added Style 3 ("Rounded" round gradient badge preset) with real-time settings page preview support.
+
 ### 1.0.1 - 2026-06-10
 - Added Live Link Preview in general settings panel.
+- Fixed layout alignment for Left and Below position styles in settings preview.
+- Fixed layout overlaps when previewing large icon size values.
+- Updated POT/PO translation source files with all missing localized strings.
 
 ### 1.0.0 - 2026-06-10
 - Initial stable release.
