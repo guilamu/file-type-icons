@@ -139,6 +139,9 @@ msgstr ""
 msgid "One class per line, without the leading dot. Any link containing one of them will be ignored."
 msgstr ""
 
+msgid "You can also wrap content with the [no_fti]...[/no_fti] shortcode to exclude links inside it."
+msgstr ""
+
 msgid "Save Changes"
 msgstr ""
 

@@ -140,6 +140,9 @@ msgstr "Classes CSS à exclure"
 msgid "One class per line, without the leading dot. Any link containing one of them will be ignored."
 msgstr "Une classe par ligne, sans le point initial. Tout lien contenant l'une d'elles sera ignoré."
 
+msgid "You can also wrap content with the [no_fti]...[/no_fti] shortcode to exclude links inside it."
+msgstr "Vous pouvez aussi encapsuler le contenu avec la syntaxe [no_fti]...[/no_fti] pour exclure les liens qu'il contient."
+
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 

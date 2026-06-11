@@ -414,6 +414,20 @@
     height: 100%;
 }
 
+.frow-half {
+    grid-template-columns: 1fr 1fr !important;
+    align-items: stretch;
+}
+
+.frow-half > div:last-child {
+    display: flex;
+}
+
+.frow-half > div:last-child .xcta {
+    height: 100%;
+    min-height: unset;
+}
+
 .xcta {
     width: 100%;
     border: .5px solid var(--color-border-secondary);

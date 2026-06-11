@@ -374,12 +374,15 @@ class AdminSettings {
                             <span class="s-ct"><?php esc_html_e('Class Exclusions', 'file-type-icons'); ?></span>
                         </div>
                         <div class="s-cb">
-                            <div class="frow">
+                            <div class="frow frow-half">
                                 <div>
                                     <div class="fl"><?php esc_html_e('CSS classes to exclude', 'file-type-icons'); ?></div>
                                     <div class="fh"><?php esc_html_e('One class per line, without the leading dot. Any link containing one of them will be ignored.', 'file-type-icons'); ?></div>
+                                    <div class="fh" style="margin-top:6px"><?php esc_html_e('You can also wrap content with the [no_fti]...[/no_fti] shortcode to exclude links inside it.', 'file-type-icons'); ?></div>
                                 </div>
-                                <textarea name="fti_exclude_classes" class="xcta" placeholder="no-icon&#10;menu-item&#10;wp-block-button__link"><?php echo esc_textarea($exclusions_text); ?></textarea>
+                                <div>
+                                    <textarea name="fti_exclude_classes" class="xcta" placeholder="no-icon&#10;menu-item&#10;wp-block-button__link"><?php echo esc_textarea($exclusions_text); ?></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>

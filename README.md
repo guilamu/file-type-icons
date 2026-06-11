@@ -90,6 +90,9 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.6 - 2026-06-11
+- Added [no_fti] shortcode explanation in the Class Exclusions settings section.
+
 ### 1.0.5 - 2026-06-11
 - Fixed updater metadata to report the plugin's tested WordPress version consistently.
 - Hardened the per-post disable meta capability and nonce handling.
