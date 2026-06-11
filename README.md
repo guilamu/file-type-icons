@@ -4,6 +4,8 @@
 
 Automatically adds customizable SVG icons to file links (PDF, Word, Excel, PowerPoint, TXT, etc.)
 
+![Plugin Screenshot](https://github.com/guilamu/file-type-icons/blob/main/screenshot.png)
+
 ## Custom SVG Icons
 - Display elegant vector graphics next to document links automatically.
 - Colorize icons using HSL tailored colors directly from a modern Coloris color picker.
