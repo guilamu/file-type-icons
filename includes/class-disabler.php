@@ -38,8 +38,8 @@ class Disabler {
                 'show_in_rest'  => true,
                 'single'        => true,
                 'type'          => 'boolean',
-                'auth_callback' => function(): bool {
-                    return current_user_can('edit_posts');
+                'auth_callback' => function(bool $allowed, string $meta_key, int $post_id): bool {
+                    return current_user_can('edit_post', $post_id);
                 }
             ]);
         }
@@ -87,7 +87,9 @@ class Disabler {
             return;
         }
 
-        if (!wp_verify_nonce($_POST['fti_meta_box_nonce'], 'fti_save_meta_box')) {
+        $nonce = wp_unslash($_POST['fti_meta_box_nonce']);
+
+        if (!wp_verify_nonce($nonce, 'fti_save_meta_box')) {
             return;
         }
 

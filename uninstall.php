@@ -9,6 +9,7 @@ defined('WP_UNINSTALL_PLUGIN') || exit;
 delete_option('fti_icon_size');
 delete_option('fti_icon_position');
 delete_option('fti_icon_style');
+delete_option('fti_hover_effect');
 delete_option('fti_active_types');
 delete_option('fti_icon_colors');
 delete_option('fti_exclude_classes');

@@ -1,6 +1,6 @@
 # File Type Icons
 
-[![Latest Release](https://img.shields.io/github/v/release/guilamu/file-type-icons?color=blue)](https://github.com/guilamu/file-type-icons/releases) [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-green.svg)](LICENSE.txt) [![WordPress: 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org) [![PHP: 8.0+](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net)
+[![Latest Release](https://img.shields.io/github/v/release/guilamu/file-type-icons?color=blue)](https://github.com/guilamu/file-type-icons/releases) [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-green.svg)](LICENSE) [![WordPress: 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-blue.svg)](https://wordpress.org) [![PHP: 8.0+](https://img.shields.io/badge/PHP-8.0%2B-purple.svg)](https://php.net)
 
 Automatically adds customizable SVG icons to file links (PDF, Word, Excel, PowerPoint, TXT, etc.)
 
@@ -90,6 +90,12 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.5 - 2026-06-11
+- Fixed updater metadata to report the plugin's tested WordPress version consistently.
+- Hardened the per-post disable meta capability and nonce handling.
+- Cleaned up the hover effect option on uninstall and switched admin asset versioning to the plugin version.
+- Aligned the documented license references with the bundled AGPL license file.
+
 ### 1.0.4 - 2026-06-10
 - Added customizable mouse hover effects (Lift and Zoom) for frontend file link icons with an interactive live settings preview.
 
@@ -120,7 +126,7 @@ For translations, the plugin uses WordPress i18n. You can contribute translation
 - [Coloris](https://github.com/mdbassit/Coloris) - A lightweight, responsive, and dependency-free color picker library by Momo Bassit (MIT License).
 
 ## License
-This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0) — see the [LICENSE](LICENSE.txt) file for details.
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0) — see the [LICENSE](LICENSE) file for details.
 
 ---
 

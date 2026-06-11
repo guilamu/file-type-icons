@@ -262,7 +262,7 @@ class GithubUpdater
             'version'       => $new_version,
             'package'       => self::get_package_url($release_data),
             'url'           => $release_data['html_url'],
-            'tested'        => get_bloginfo('version'),
+            'tested'        => self::TESTED_WP,
             'requires_php'  => self::REQUIRES_PHP,
             'compatibility' => new stdClass(),
             'icons'         => array(),
@@ -309,7 +309,7 @@ class GithubUpdater
         $res->author       = sprintf('<a href="https://github.com/%s">%s</a>', self::GITHUB_USER, self::GITHUB_USER);
         $res->homepage     = sprintf('https://github.com/%s/%s', self::GITHUB_USER, self::GITHUB_REPO);
         $res->requires     = self::REQUIRES_WP;
-        $res->tested       = get_bloginfo('version');
+        $res->tested       = self::TESTED_WP;
         $res->requires_php = self::REQUIRES_PHP;
 
         $download_link = self::get_plugin_info_download_link($release_data);

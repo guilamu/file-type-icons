@@ -115,9 +115,9 @@ class AdminSettings {
         }
         wp_enqueue_style('tabler-icons', 'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css', [], '2.44.0');
         wp_enqueue_style('coloris-css', FTI_PLUGIN_URL . 'assets/css/coloris.min.css', [], FTI_VERSION);
-        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', ['coloris-css'], time());
+        wp_enqueue_style('fti-admin-style', FTI_PLUGIN_URL . 'assets/css/admin.css', ['coloris-css'], FTI_VERSION);
         wp_enqueue_script('coloris-js', FTI_PLUGIN_URL . 'assets/js/coloris.min.js', [], FTI_VERSION, true);
-        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', ['coloris-js'], time(), true);
+        wp_enqueue_script('fti-admin-script', FTI_PLUGIN_URL . 'assets/js/admin.js', ['coloris-js'], FTI_VERSION, true);
         wp_localize_script('fti-admin-script', 'ftiAdmin', [
             'templates' => [
                 '1' => IconHandler::SVG_TEMPLATES,
