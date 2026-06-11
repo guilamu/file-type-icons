@@ -90,6 +90,9 @@ add_filter( 'fti_is_disabled', function( $is_disabled ) {
 
 ## Changelog
 
+### 1.0.7 - 2026-06-11
+- Bundled the admin settings icons locally so the settings UI no longer depends on an external CDN.
+
 ### 1.0.6 - 2026-06-11
 - Added [no_fti] shortcode explanation in the Class Exclusions settings section.
 
